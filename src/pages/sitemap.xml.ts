@@ -5,6 +5,7 @@ const staticPaths = [
   'about/',
   'contact/',
   'changelog/',
+  'guestbook/',
   'notes/',
   'privacy/',
   'tools/',
@@ -24,20 +25,36 @@ function escapeXml(value: string) {
     .replaceAll("'", '&apos;');
 }
 
-export async function GET({ site }: { site: URL }) {
+function urlEntry(location: string, lastModified?: Date) {
+  const lastmod = lastModified
+    ? `<lastmod>${lastModified.toISOString().slice(0, 10)}</lastmod>`
+    : '';
+
+  return `  <url><loc>${escapeXml(location)}</loc>${lastmod}</url>`;
+}
+
+export async function GET({ site }: { site?: URL }) {
+  const origin = site ?? new URL('https://www.nonbisa.com/');
   const notes = await getCollection('notes', ({ data }) => !data.draft);
-  const paths = [
-    ...staticPaths,
-    ...notes.map((note) => `notes/${note.id}/`),
-  ];
-  const urls = paths.map((path) => {
-    const location = escapeXml(new URL(path, site).toString());
-    return `  <url><loc>${location}</loc></url>`;
-  });
+
+  const staticUrls = staticPaths.map((path) =>
+    urlEntry(new URL(path, origin).toString()),
+  );
+
+  const noteUrls = notes
+    .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+    .map((note) =>
+      urlEntry(
+        new URL(`notes/${note.id}/`, origin).toString(),
+        note.data.updatedAt ?? note.data.publishedAt,
+      ),
+    );
+
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls,
+    ...staticUrls,
+    ...noteUrls,
     '</urlset>',
     '',
   ].join('\n');
