@@ -20,6 +20,11 @@ body:after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;back
 @media(max-width:700px){body{padding:0 0 57px}.window{border-left:0;border-right:0;box-shadow:none}.hero{display:block}.privacy{margin-top:16px;max-width:none}.summary{grid-template-columns:1fr}.errorgrid{grid-template-columns:1fr}.content{padding:18px}.task{max-width:none}h1{letter-spacing:-2px}}
 </style>
 <link rel="stylesheet" href="../../assets/css/desktop.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3535288587120077" crossorigin="anonymous"></script>
+<style>
+.gc-policy-footer{position:relative;z-index:120;width:min(1180px,calc(100% - 36px));margin:18px auto 62px;padding:10px 14px;text-align:center;font:700 12px/1.5 "Malgun Gothic",sans-serif;color:#33403d;background:#fff9e4;border:2px solid #191c1b;box-sizing:border-box}
+.gc-policy-footer a{color:inherit;text-decoration:underline;text-underline-offset:2px}.gc-policy-footer span{margin:0 7px}
+</style>
 </head>
 <body data-gc-root="../../" data-gc-task-icon="assets/icons/travel.svg" data-gc-task-title="출장여비 검증">
 <main class="window"><div class="titlebar"><b><img class="gc-app-icon" src="../../assets/icons/travel.svg" alt="">출장여비 검증.EXE</b><button class="ctl">_</button><button class="ctl">□</button><button class="ctl" type="button" onclick="location.href='../../'" aria-label="임시 사이트로 돌아가기">×</button></div><div class="menu"><a href="../../">← 홈</a><span>검사</span>　<span>도움말</span></div><div class="content">
@@ -156,4 +161,5 @@ const dz=$('#dropzone');['dragenter','dragover'].forEach(x=>dz.addEventListener(
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');['summaryPanel','errorPanel'].forEach(id=>$('#'+id).classList.toggle('hidden',id!==b.dataset.panel))});$('#download').onclick=exportExcel;$('#reset').onclick=()=>location.reload();const lightbox=$('#guideLightbox');function closeGuide(){lightbox.classList.add('hidden')}$('#guideImage').onclick=()=>lightbox.classList.remove('hidden');$('#closeGuide').onclick=closeGuide;lightbox.onclick=e=>{if(e.target===lightbox)closeGuide()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuide()});
 </script>
 <script src="../../assets/js/desktop.js"></script>
+<footer class="gc-policy-footer" aria-label="사이트 정책 및 문의"><a href="../../privacy/">개인정보처리방침</a><span aria-hidden="true">·</span><a href="../../contact/">문의</a></footer>
 </body></html>
