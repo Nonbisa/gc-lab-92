@@ -68,11 +68,11 @@ export const tools: ToolItem[] = [
     statusType: 'live',
   },
   {
-    title: 'EMPTY SLOT',
-    description: '다음 실험을 기다리는 빈 자리',
-    icon: '❔',
-    status: '비어 있음',
-    statusType: 'wait',
-    message: '다음 실험을 기다리는 빈 자리입니다.',
+    title: '복무점검',
+    description: '연가·휴가 집계 · 육아시간 중복 점검',
+    icon: '📅',
+    href: 'tools/bokmoo/',
+    status: '사용 가능',
+    statusType: 'live',
   },
 ];

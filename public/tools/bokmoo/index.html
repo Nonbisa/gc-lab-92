@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#143d38">
+  <title>복무점검.exe</title>
+  <meta name="description" content="복무 엑셀에서 연가와 휴가를 집계하고 육아시간과 다른 휴가의 하루 4시간 초과 여부를 점검하는 브라우저 도구입니다.">
+  <link rel="canonical" href="https://www.nonbisa.com/tools/bokmoo/">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+  <link rel="stylesheet" href="../../assets/css/desktop.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-gc-root="../../" data-gc-task-icon="assets/icons/bokmoo.svg" data-gc-task-title="복무점검">
+  <main class="window">
+    <div class="titlebar">
+      <b><img class="gc-app-icon" src="../../assets/icons/bokmoo.svg" alt="">복무점검.EXE</b>
+      <button class="ctl" aria-label="최소화">_</button>
+      <button class="ctl" aria-label="최대화">□</button>
+      <button class="ctl" type="button" onclick="location.href='../../'" aria-label="임시 사이트로 돌아가기">×</button>
+    </div>
+    <div class="menu"><a href="../../">← 홈</a><span>파일</span><span>분석</span><span>도움말</span></div>
+
+    <div class="content">
+      <section class="hero">
+        <div>
+          <span class="tag">OFFICE TOOL / LEAVE AUDIT</span>
+          <h1>복무점검</h1>
+          <p>연가·휴가 사용량을 집계하고<br>육아시간과 다른 휴가의 중복 사용을 확인합니다.</p>
+        </div>
+        <div class="privacy">🔒 브라우저 처리 모드<br>선택한 파일과 고유식별번호는 외부 서버로 전송되거나 저장되지 않습니다.</div>
+      </section>
+
+      <details class="criteria">
+        <summary>📋 입력 형식과 점검 기준 보기</summary>
+        <div class="criteria-body">
+          <div class="rule-grid">
+            <div><b>필수 열</b><span>부서 · 성명 · 고유식별번호 · 종별 · 기간 · 일/시간</span></div>
+            <div><b>선택 열</b><span>직급 · 사유</span></div>
+            <div><b>1일 기준</b><span>8시간(480분)</span></div>
+            <div><b>초과 기준</b><span>같은 날 육아시간 + 다른 휴가가 4시간 초과</span></div>
+          </div>
+          <p>첫 시트의 데이터를 사용합니다. 기간은 ‘2026.01.01 ~ 2026.01.02’, 사용량은 ‘1일 2시간 30분’처럼 입력할 수 있습니다.</p>
+        </div>
+      </details>
+
+      <label class="upload" id="fileDrop">
+        <input type="file" id="fileInput" accept=".xlsx,.xls">
+        <span class="step">1</span>
+        <strong>복무 엑셀 선택</strong>
+        <small id="fileLabel">파일을 선택하거나 이곳에 끌어놓으세요.</small>
+      </label>
+
+      <div class="runbar">
+        <button class="btn primary" id="run" disabled>복무자료 분석하기</button>
+        <div class="notice" id="notice">엑셀 파일을 선택하면 분석할 수 있습니다. <span class="cursor"></span></div>
+      </div>
+
+      <section id="results" class="hidden">
+        <div class="summary">
+          <article class="metric"><small>원본 행</small><b id="rowCount">0</b><span>건</span></article>
+          <article class="metric people"><small>대상 인원</small><b id="peopleCount">0</b><span>명</span></article>
+          <article class="metric leave"><small>연가 집계</small><b id="annualCount">0</b><span>건</span></article>
+          <article class="metric warn"><small>4시간 초과</small><b id="flagCount">0</b><span>건</span></article>
+        </div>
+
+        <div class="toolbar">
+          <div class="tabs" role="tablist" aria-label="분석 결과">
+            <button class="tab active" data-view="annual">연가 개인별</button>
+            <button class="tab" data-view="pivot">휴가 피벗</button>
+            <button class="tab" data-view="flagged">4시간 초과</button>
+            <button class="tab" data-view="detail">휴가 상세</button>
+            <button class="tab" data-view="combined">육아·휴가 요약</button>
+          </div>
+          <label class="search">⌕ <input id="search" type="search" placeholder="이름·부서 검색"></label>
+        </div>
+
+        <div class="tablebox"><table id="resultTable"><thead></thead><tbody></tbody></table></div>
+        <p class="row-note" id="rowNote"></p>
+
+        <div class="actions">
+          <button class="btn primary" id="download">📥 분석결과 엑셀 받기</button>
+          <button class="btn" id="reset">↻ 다시 분석</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="taskbar"><button class="start">▣ 시작</button><div class="task"><img class="gc-app-icon" src="../../assets/icons/bokmoo.svg" alt="">복무점검</div><div class="clock" id="clock"></div></div>
+  <script src="./app.js"></script>
+  <script src="../../assets/js/desktop.js"></script>
+  <footer class="gc-policy-footer" aria-label="사이트 정책 및 문의"><a href="../../privacy/">개인정보처리방침</a><span aria-hidden="true">·</span><a href="../../contact/">문의</a></footer>
+</body>
+</html>

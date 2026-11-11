@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="복무점검">
+  <rect x="7" y="10" width="50" height="47" rx="3" fill="#fff9e4" stroke="#171a19" stroke-width="4"/>
+  <path d="M7 23h50" stroke="#171a19" stroke-width="4"/>
+  <path d="M18 6v11M46 6v11" stroke="#171a19" stroke-width="5"/>
+  <rect x="13" y="15" width="38" height="5" fill="#ffd84c"/>
+  <path d="m18 39 8 8 20-20" fill="none" stroke="#16745d" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>
